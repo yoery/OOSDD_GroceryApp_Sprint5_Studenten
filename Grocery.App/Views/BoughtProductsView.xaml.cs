@@ -21,8 +21,11 @@ public partial class BoughtProductsView : ContentPage
 
         if (selectedIndex != -1)
         {
-            Product product = picker.SelectedItem as Product;
-            _viewModel.NewSelectedProduct(product);
+            Grocery.Core.Models.Product? product = picker.SelectedItem as Grocery.Core.Models.Product;
+            if (product != null)
+            {
+                _viewModel.NewSelectedProduct(product);
+            }
         }
     }
 }

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Grocery.App.ViewModels"
+             xmlns:models="clr-namespace=Grocery.App.Models"
+             x:Class="Grocery.App.Views.CategoriesView"
+             Title="CategoriesView">
+
+    <ContentPage.Content>
+        <VerticalStackLayout Padding="16" Spacing="12">
+            <Label Text="Categorieën"
+                   FontSize="24"
+                   HorizontalOptions="Center" />
+
+            <CollectionView ItemsSource="{Binding Categories}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="4" Padding="8" BorderColor="LightGray">
+                            <HorizontalStackLayout>
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18" />
+                                    <Label Text="{Binding Description}" FontSize="14" TextColor="Gray" />
+                                </VerticalStackLayout>
+                                <Button Text="Verwijder"
+                                        Command="{Binding BindingContext.DeleteCategoryCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"
+                                        CommandParameter="{Binding .}"
+                                        BackgroundColor="Red"
+                                        TextColor="White"
+                                        Margin="16,0,0,0" />
+                                <Button Text="Productcategorieën"
+                                        Command="{Binding BindingContext.OpenProductCategoriesCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"
+                                        CommandParameter="{Binding .}"
+                                        BackgroundColor="DodgerBlue"
+                                        TextColor="White"
+                                        Margin="8,0,0,0" />
+                            </HorizontalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button Text="Ververs"
+                    Command="{Binding RefreshCommand}"
+                    HorizontalOptions="Center" />
+        </VerticalStackLayout>
+    </ContentPage.Content>
+</ContentPage>
